@@ -1,0 +1,4 @@
+*.txt
+*.csv
+*.json
+main_test.go
