@@ -52,11 +52,9 @@ Usage:
 url文件
 
 ```
-http://www.example.com:8080
-http://www.example.com:81
-http://www.example.com:1234
-https://www.example.com
-http://www.example.com
+http://1.2.3.4:8090
+http://1.2.3.4
+https://1.2.3.4:8765
 ```
 
 host文件
