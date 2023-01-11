@@ -68,10 +68,10 @@ func CreateOutput(fileType string) string {
 		_, outPathErr := os.Stat(fileName)
 		if os.IsNotExist(outPathErr) {
 			os.Create(fileName)
-			fmt.Println("输出为: ", fileName)
+			fmt.Println("[+] 输出为: ", fileName)
 		} else {
 			fileName = "result-" + uuid.New() + ".json"
-			fmt.Println("result.json 文件已存在, 输出为: ", fileName)
+			fmt.Println("[+] result.json 文件已存在, 输出为: ", fileName)
 			os.Create(fileName)
 		}
 	} else if fileType == "csv" {
@@ -79,17 +79,26 @@ func CreateOutput(fileType string) string {
 		_, outPathErr := os.Stat(fileName)
 		if os.IsNotExist(outPathErr) {
 			os.Create(fileName)
-			fmt.Println("输出为: ", fileName)
+			fmt.Println("[+] 输出为: ", fileName)
 		} else {
 			fileName = "result-" + uuid.New() + ".csv"
-			fmt.Println("result.csv 文件已存在, 输出为: ", fileName)
+			fmt.Println("[+] result.csv 文件已存在, 输出为: ", fileName)
 			os.Create(fileName)
 		}
+		f, _ := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
+		io.WriteString(f, "Url,Host,Weight,Title,StatusCode\n")
+		defer f.Close()
 	}
-	f, _ := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
-	io.WriteString(f, "Url,Host,Weight\n")
-	defer f.Close()
 	return fileName
+}
+
+func Log(content string) {
+	if TerminalWidth > len(content) {
+		fmt.Printf("\r" + content + strings.Repeat(" ", TerminalWidth-len(content)) + "\n")
+	} else {
+		fmt.Printf("\r" + content + "\n")
+	}
+	BarClass.Play(BarInt)
 }
 
 func WriteJson(fileName, result string) {
@@ -101,7 +110,7 @@ func WriteJson(fileName, result string) {
 func WriteCsv(fileName string, result []map[string]interface{}) {
 	f, _ := os.OpenFile(fileName, os.O_CREATE|os.O_WRONLY|os.O_APPEND, 0666)
 	for _, item := range result {
-		io.WriteString(f, item["url"].(string)+","+item["host"].(string)+","+strconv.Itoa(item["weight"].(int))+"\n")
+		io.WriteString(f, item["url"].(string)+","+item["host"].(string)+","+strconv.Itoa(item["weight"].(int))+","+item["title"].(string)+","+strconv.Itoa(item["statuscode"].(int))+"\n")
 	}
 	defer f.Close()
 }

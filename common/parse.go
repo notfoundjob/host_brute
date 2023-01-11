@@ -3,6 +3,8 @@ package common
 import (
 	"fmt"
 	"os"
+
+	"golang.org/x/crypto/ssh/terminal"
 )
 
 func Parse(options *HostsOptions) {
@@ -15,4 +17,5 @@ func Parse(options *HostsOptions) {
 		fmt.Println("Url文件不存在")
 		os.Exit(0)
 	}
+	TerminalWidth, _, _ = terminal.GetSize(int(os.Stdout.Fd()))
 }

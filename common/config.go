@@ -3,15 +3,15 @@ package common
 type ArrayFlags []string
 
 type HostsOptions struct {
-	Hosts      string
-	Urls       string
-	UserAgent  bool
-	Header     ArrayFlags
-	Thread     int
-	Proxy      string
-	TimeOut    int
-	StatusCode string
-	Output     string
+	Hosts       string
+	Urls        string
+	RandomAgent bool
+	Header      ArrayFlags
+	Thread      int
+	Max         int
+	TimeOut     int
+	StatusCode  string
+	Output      string
 }
 
 type UrlResult struct {
@@ -27,4 +27,12 @@ type HostWeight struct {
 	Weight int
 }
 
-// var myFlags arrayFlags
+type Bar struct {
+	total int64
+}
+
+var TerminalWidth int
+
+var BarInt int64
+
+var BarClass Bar

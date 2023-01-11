@@ -2,3 +2,6 @@
 *.csv
 *.json
 main_test.go
+main_testa.go
+test/
+release/

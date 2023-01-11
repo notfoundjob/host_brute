@@ -1,8 +1,8 @@
 package main
 
 import (
-	"kw0ng.top/hosts/common"
-	"kw0ng.top/hosts/runner"
+	"github.com/notfoundjob/host_brute/common"
+	"github.com/notfoundjob/host_brute/runner"
 )
 
 func main() {
