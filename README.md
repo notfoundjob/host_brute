@@ -4,7 +4,7 @@
 
 相关思考：[黑客的睡前一思](https://mp.weixin.qq.com/s/QCPUwgwhnDtuuY656Ec6XQ)
 
-希望大家多提issue，让我们更好的为大家服务，respect
+**希望大家多提issue，让我们更好的为大家服务，respect**
 
 > 资产信息扩大器，通过host碰撞发现企业隐形资产，帮助攻击者发现更多攻击面。
 
@@ -18,6 +18,9 @@
 
 - [x] 页面内容差异检测
 - [x] 自定义状态码（白名单）
+- [x] 进度条
+- [x] 随机UA
+- [x] 阈值
 
 ## 使用
 
@@ -33,12 +36,14 @@ Usage:
     	请求Header 支持解析多个 -H
   -hf string
     	Host文件
+  -m int
+    	单个Url如果出现N次Host 则认定为脏数据 (default 50)
   -mc string
     	状态码 200,500
   -o string
     	输出文件格式 json 或 csv (default "csv")
   -random-agent
-    	开启随机User-Agent (未支持)
+    	开启随机User-Agent
   -t int
     	最大线程数量 (default 32)
   -timeout int
@@ -84,6 +89,4 @@ host_brute -uf url.txt -hf host.txt -t 50 -timeout 5 -mc 200,301,302
 
 ## 未来
 
-- [ ] 进度条
-- [ ] 随机UA
 - [ ] 页面相似度
